@@ -53,6 +53,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        canceldownload.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                cancelDownload();
+            }
+        });
+
     }
 
     private int getDownloadStatus() {
@@ -82,7 +89,8 @@ public class MainActivity extends AppCompatActivity {
         downloadID = downloadManager.enqueue(request);
     }
 
-    public void setCanceldownload(Button canceldownload) {
-        this.canceldownload = canceldownload;
+    public void cancelDownload(){
+        DownloadManager downloadManager = (DownloadManager) getSystemService(DOWNLOAD_SERVICE);
+        downloadManager.remove(downloadID);
     }
 }
